@@ -5,20 +5,20 @@ module Main (main) where
 import Control.Monad.State.Strict
 import qualified Data.Map.Strict as M
 import Data.Word ( Word8)
-import Data.BitVector.Sized
+import Data.BitVector.Sized hiding (and)
 import GHC.Natural (Natural)
 
 type Nat = Natural
 
-type MemSort = M.Map Addr Word8
+type MemSort = M.Map (BV 64) Word8
 
 data SHMCond 
   = BarrierAcquirePerformed
   | BarrierReleasePerformed
   | CacheInvalidationPerformed
 
-type LocalOwnership = M.Map Addr Integer
-type SharedMemConditions = M.Map Addr SHMCond
+type LocalOwnership = M.Map (BV 64) Integer
+type SharedMemConditions = M.Map (BV 64)SHMCond
 
 data MemState = MemState 
     { mappings :: MemSort
@@ -62,12 +62,24 @@ palignvalid addr alignment = if not $ palignvalidPre alignment then
                           checkAlignment = leftShifted == addrLoc
 
 
-pvalid :: Addr -> MState Bool 
-pvalid addr = case ty addr of 
-                ThreadLocal -> pure True 
-                SharedDMA -> pure False
-                Shared -> pure False
+memexists :: Addr -> MState Bool 
+memexists addr = do 
+  let addrLoc = loc addr
+  st <- get
+  let mappings' = mappings st
+  pure $ M.member addrLoc mappings' 
 
+
+nonaliased :: Addr -> MState Bool 
+nonaliased addr = do 
+  undefined
+
+
+pvalid :: Addr -> MState Bool 
+pvalid addr = do  
+            memcond <- memexists addr
+            aliasedcond <- nonaliased addr
+            pure $ memcond && aliasedcond
 
 loadWord8Pre :: Addr -> Bool 
 loadWord8Pre addr = False
