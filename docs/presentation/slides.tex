@@ -13,7 +13,7 @@
 
 % information for the title page
 \author{Isitha Subasinghe}
-\title{Verification of device drivers in the presence of shared memory}
+\title{Verification of programs in the presence of shared memory under weak memory consistency}
 \subtitle{A memory model for shared memory systems}
 \institute{School of Computer Science and Engineering}
 \date{\today}
@@ -25,11 +25,16 @@
 	\end{frame}
 	
 	\begin{frame}{Introduction}
-     
+    \framesubtitle{The seL4 core platform and sDDF}  
 	\end{frame}
 
   \begin{frame}{Related Work}
+    There have been some work on verifying low level systems, in fact the seL4 relies upon Tuch's memory model. 
+    However, as far as I am aware, no model exists that takes into consideration various types of shared memory. 
+  \end{frame}
 
+  \begin{frame}{Tuch's model of memory}
+    Tuch's \cite{tuch2007types} memory model considers programs.  
   \end{frame}
 
   \begin{frame}{Logical model of memory}
@@ -37,12 +42,19 @@
   
   \begin{frame}{Logical model of memory}
     \framesubtitle{Integer to pointer casts}
+    Well unfortunately this isn't good enough for general C programs. It turns out those pesky C programmers do insane things such as 
+    converting integers to pointers and back. There are naive solutions to tackle this problem, but unfortunately they come with serious downsides. 
+    \begin{itemize}
+      \item View all integers as pointers
+      \item An analysis pass to determine which integer variables needed to be reasoned about as pointers. 
+    \end{itemize}
   \end{frame}
 
   \begin{frame}{Concrete model of memory}
   \end{frame}
 
   \begin{frame}{Aliasing}
+
   \end{frame}
 
 	\begin{frame}{Solutions}
@@ -105,4 +117,10 @@
 		
 		Color guide was based from the visual guide found at the \href{https://www.brand.unsw.edu.au/download/}{UNSW brand hub}.
 	\end{frame}
+
+  \begin{frame}[allowframebreaks]{References}
+    \bibliographystyle{amsalpha}
+    \nocite{*}
+    \bibliography{ref}
+  \end{frame}
 \end{document}
