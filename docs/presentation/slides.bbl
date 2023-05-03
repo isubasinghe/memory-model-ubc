@@ -1,3 +1,4 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
 \providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
 \providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
 % \MRhref is called by the amsart/book/proc definition of \MR.
@@ -5,7 +6,30 @@
   \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
 }
 \providecommand{\href}[2]{#2}
-\begin{thebibliography}{TKN07}
+\begin{thebibliography}{MGD{\etalchar{+}}19}
+
+\bibitem[KHM{\etalchar{+}}15]{kang2015formal}
+Jeehoon Kang, Chung-Kil Hur, William Mansky, Dmitri Garbuzov, Steve Zdancewic,
+  and Viktor Vafeiadis, \emph{A formal c memory model supporting
+  integer-pointer casts}, ACM SIGPLAN Notices \textbf{50} (2015), no.~6,
+  326--335.
+
+\bibitem[KLGH07]{kuz2007camkes}
+Ihor Kuz, Yan Liu, Ian Gorton, and Gernot Heiser, \emph{Camkes: A component
+  model for secure microkernel-based embedded systems}, Journal of Systems and
+  Software \textbf{80} (2007), no.~5, 687--699.
+
+\bibitem[LHC{\etalchar{+}}23]{lattuada2023verus}
+Andrea Lattuada, Travis Hance, Chanhee Cho, Matthias Brun, Isitha Subasinghe,
+  Yi~Zhou, Jon Howell, Bryan Parno, and Chris Hawblitzel, \emph{Verus:
+  Verifying rust programs using linear ghost types (extended version)}, arXiv
+  preprint arXiv:2303.05491 (2023).
+
+\bibitem[MGD{\etalchar{+}}19]{memarian2019exploring}
+Kayvan Memarian, Victor~BF Gomes, Brooks Davis, Stephen Kell, Alexander
+  Richardson, Robert~NM Watson, and Peter Sewell, \emph{Exploring c semantics
+  and pointer provenance}, Proceedings of the ACM on Programming Languages
+  \textbf{3} (2019), no.~POPL, 1--32.
 
 \bibitem[TKN07]{tuch2007types}
 Harvey Tuch, Gerwin Klein, and Michael Norrish, \emph{Types, bytes, and
